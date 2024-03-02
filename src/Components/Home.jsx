@@ -47,24 +47,23 @@ const Home = () => {
 
         {/* Main poster */}
         <div className="relative w-screen h-[56.25vw] md:h-[37.5vw] lg:h-[30vw]">
-          {randomMovie?.poster_path ? (
-            <img
-              src={`https://image.tmdb.org/t/p/original${randomMovie.poster_path}`}
-              className="w-full h-full object-cover brightness-[60%] transition duration-500"
-              alt={randomMovie.title}
-            />
-          ) : (
-            <p className="text-white">Image not available</p>
-          )}
-          <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
-            <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
-              {randomMovie?.title}
-            </p>
-            <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
-              {randomMovie?.description}
-            </p>
-            <div className="flex flex-row items-center mt-3 md:mt-4 gap-3"></div>
-          </div>
+          <Link to={`/mainmovie/${randomMovie?.id}`}>
+            {randomMovie?.poster_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original${randomMovie.poster_path}`}
+                className="w-full h-full object-cover brightness-[60%] transition duration-500"
+                alt={randomMovie.title}
+              />
+            ) : (
+              <p className="text-white">Image not available</p>
+            )}
+            <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
+              <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
+                {randomMovie?.title}
+              </p>
+              <div className="flex flex-row items-center mt-3 md:mt-4 gap-3"></div>
+            </div>
+          </Link>
         </div>
 
         {/* Top 8 TV Shows */}
@@ -80,7 +79,7 @@ const Home = () => {
                   className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
                 >
                   <Link
-                    to={`/movie/${tvShow.id}`}
+                    to={`/maintv/${tvShow.id}`}
                     className="block w-full h-full"
                   >
                     <div className="w-full h-56 overflow-hidden rounded-lg">
@@ -110,7 +109,7 @@ const Home = () => {
                   className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
                 >
                   <Link
-                    to={`/movie/${movie.id}`}
+                    to={`/mainmovie/${movie.id}`}
                     className="block w-full h-full"
                   >
                     <div className="w-full h-56 overflow-hidden rounded-lg">

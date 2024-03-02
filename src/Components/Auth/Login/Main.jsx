@@ -1,4 +1,8 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Main = () => {
+  const [input, setInput] = useState("");
   return (
     <div className="relative flex flex-col">
       <img
@@ -64,12 +68,15 @@ const Main = () => {
         </div>
         <div className="flex flex-row mt-5 justify-center items-center">
           <input
-            className="p-4 w-1/2 border border-black"
+            className="p-4 w-full border border-black"
             placeholder="Email address"
+            onChange={(e) => setInput(e.target.value)}
           />
-          <button className="p-4 ml-2 w-100 bg-[#E50914] text-white font-bold text-2xl">
-            Get Started
-          </button>
+          <Link to={`/signin/${input}`} className="block w-full h-full">
+            <button className="p-4  w-100 bg-[#E50914] text-white font-bold text-2xl">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </div>

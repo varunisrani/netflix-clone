@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Tvlist = () => {
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
   const [randomMovie, setRandomMovie] = useState(null);
@@ -166,4 +166,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Tvlist;

@@ -10,6 +10,7 @@ const Login = () => {
       <Part1 />
       <Part2 />
       <Part3 />
+
       <Part4 />
       <div className="flex flex-row mt-5 justify-center items-center mb-20">
         <input

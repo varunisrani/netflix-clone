@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import { useState, useEffect } from "react";
+import movieTrailer from "movie-trailer";
 
 const Mainmovie = () => {
   const [movie, setMovie] = useState({});
@@ -18,6 +19,19 @@ const Mainmovie = () => {
         console.error(err);
       });
   }, [mid]);
+
+  const playVideo = async () => {
+    try {
+      const trailer = await movieTrailer(movie.title || "", {
+        id: true,
+      });
+
+      const videoId = trailer || ""; // If a trailer is found, use it; otherwise, an empty string
+      window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
+    } catch (error) {
+      console.error("Error fetching trailer:", error);
+    }
+  };
 
   return (
     <div className="bg-[#141414] h-screen">
@@ -59,11 +73,12 @@ const Mainmovie = () => {
             {movie.runtime ? `${movie.runtime} mins` : "N/A"}
           </p>
           <div>
-            <Link to={`/playvideo/${mid}`}>
-              <button className="w-60 p-5 border-4 border-[#E50914] mt-20 rounded-full text-white hover:bg-[#E50914]">
-                Play
-              </button>
-            </Link>
+            <button
+              className="w-60 p-5 border-4 border-[#E50914] mt-20 rounded-full text-white hover:bg-[#E50914]"
+              onClick={playVideo}
+            >
+              Play
+            </button>
           </div>
         </div>
       </div>

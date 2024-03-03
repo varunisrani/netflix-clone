@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { GoogleAuthProvider } from "@firebase/auth";
+import { auth } from "./firebase";
+import { signInWithPopup } from "firebase/auth";
 const Main = () => {
-  const [input, setInput] = useState("");
+  const google = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const user = await signInWithPopup(auth, provider);
+      console.log(user);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
     <div className="relative flex flex-col">
       <img
@@ -19,11 +27,7 @@ const Main = () => {
           className="relative z-10"
         />
       </div>
-      <div className="absolute top-0 right-0 mt-5 mr-5">
-        <button className="w-20 h-10 bg-[#E50914] text-white font-medium rounded-md">
-          Sign in
-        </button>
-      </div>
+      <div className="absolute top-0 right-0 mt-5 mr-5"></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-5">
         <div
           id="centered-text"
@@ -66,17 +70,13 @@ const Main = () => {
           <span>your</span>
           <span>membership.</span>
         </div>
-        <div className="flex flex-row mt-5 justify-center items-center">
-          <input
-            className="p-4 w-full border border-black"
-            placeholder="Email address"
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <Link to={`/signin/${input}`} className="block w-full h-full">
-            <button className="p-4  w-100 bg-[#E50914] text-white font-bold text-2xl">
-              Get Started
-            </button>
-          </Link>
+        <div className="flex flex- mt-5 justify-center items-center">
+          <button
+            className="p-4  w-100 bg-[#E50914] text-white font-bold text-2xl"
+            onClick={google}
+          >
+            Get Started
+          </button>
         </div>
       </div>
     </div>

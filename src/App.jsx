@@ -5,7 +5,9 @@ import Tvlist from "./Components/Tvlist";
 import Movie from "./Components/Movie";
 import Mainmovie from "./Components/Mainmovie";
 import Maintv from "./Components/Maintv";
-import Login1 from "./Components/Auth/Login/Login1";
+
+import Search from "./Components/Search";
+import Mainsearch from "./Components/MainSearch";
 
 const router = createBrowserRouter([
   {
@@ -33,12 +35,12 @@ const router = createBrowserRouter([
     element: <Maintv />,
   },
   {
-    path: "/signin/:sid",
-    element: <Login1 />,
+    path: "/search",
+    element: <Search />,
   },
   {
-    path: "/playvideo/:mid",
-    element: <Login1 />,
+    path: "/mainsearch/:_id",
+    element: <Mainsearch />,
   },
 ]);
 function App() {

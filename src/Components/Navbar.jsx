@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { auth } from "./Auth/Login/firebase";
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
 
@@ -8,6 +8,9 @@ const Navbar = () => {
     setActiveLink(link);
   };
 
+  const logout = async () => {
+    auth.signOut();
+  };
   return (
     <div>
       <div className="relative flex items-center justify-between p-4 bg-[#141414] text-white">
@@ -50,7 +53,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <Link to="/search">
             <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
               <svg
@@ -69,6 +72,9 @@ const Navbar = () => {
               </svg>
             </button>
           </Link>
+          <button onClick={logout}>
+            <Link to="/login">Log out</Link>
+          </button>
         </div>
       </div>
     </div>

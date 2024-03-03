@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./Auth/Login/firebase";
 const Tvlist = () => {
   const [tv, setTv] = useState([]);
   const [randomTv, setRandomTv] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a"; // Replace with your actual API key
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     // Fetch TV shows
@@ -54,30 +56,42 @@ const Tvlist = () => {
         Top 8 TV Shows
       </h2>
       <div className="flex flex-row overflow-x-auto p-4 mt-5 ml-5 md:flex-row lg:justify-start">
-        {tv && tv.length > 0 ? (
-          <div className="flex flex-row space-x-4">
-            {tv.slice(0, 8).map((tvShow) => (
-              <div
-                key={tvShow.id}
-                className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
-              >
-                <Link
-                  to={`/maintv/${tvShow.id}`}
-                  className="block w-full h-full"
+        {user ? (
+          tv && tv.length > 0 ? (
+            <div className="flex flex-row space-x-4">
+              {tv.slice(0, 8).map((tvShow) => (
+                <div
+                  key={tvShow.id}
+                  className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
                 >
-                  <div className="w-full h-56 overflow-hidden rounded-lg">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
-                      alt={tvShow.title}
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                  <Link
+                    to={`/maintv/${tvShow.id}`}
+                    className="block w-full h-full"
+                  >
+                    <div className="w-full h-56 overflow-hidden rounded-lg">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
+                        alt={tvShow.title}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>Loading TV shows...</p>
+          )
         ) : (
-          <p>Loading TV shows...</p>
+          <div>
+            <p>You are not logged in. Please log in to view TV shows.</p>
+            <button
+              className="text-white bg-blue-500 p-2 rounded"
+              onClick={() => history.push("/login")}
+            >
+              Log In
+            </button>
+          </div>
         )}
       </div>
 
@@ -86,30 +100,39 @@ const Tvlist = () => {
         Top 8 TV Shows
       </h2>
       <div className="flex flex-row overflow-x-auto p-4 mt-5 ml-5 md:flex-row lg:justify-start">
-        {tv && tv.length > 0 ? (
-          <div className="flex flex-row space-x-4">
-            {tv.slice(0, 8).map((tvShow) => (
-              <div
-                key={tvShow.id}
-                className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
-              >
-                <Link
-                  to={`/maintv/${tvShow.id}`}
-                  className="block w-full h-full"
+        {user ? (
+          tv && tv.length > 0 ? (
+            <div className="flex flex-row space-x-4">
+              {tv.slice(0, 8).map((tvShow) => (
+                <div
+                  key={tvShow.id}
+                  className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0"
                 >
-                  <div className="w-full h-56 overflow-hidden rounded-lg">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
-                      alt={tvShow.title}
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                  <Link
+                    to={`/maintv/${tvShow.id}`}
+                    className="block w-full h-full"
+                  >
+                    <div className="w-full h-56 overflow-hidden rounded-lg">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
+                        alt={tvShow.title}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>Loading TV shows...</p>
+          )
         ) : (
-          <p>Loading TV shows...</p>
+          <div className="flex flex-col justify-center items-center font-bold text-5xl inset-0 absolute">
+            Please Login to Access this Page
+            <button className="text-xl bg-[#E50914] text-white w-20 p-4 flex justify-center items-center rounded-full">
+              <Link to="/login">Login</Link>
+            </button>
+          </div>
         )}
       </div>
     </div>

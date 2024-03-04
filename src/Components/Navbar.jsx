@@ -72,6 +72,9 @@ const Navbar = () => {
               </svg>
             </button>
           </Link>
+          <button className="text-white">
+            <Link to="/profile">Profile</Link>
+          </button>
           <button onClick={logout}>
             <Link to="/login">Log out</Link>
           </button>

@@ -8,12 +8,20 @@ import Maintv from "./Components/Maintv";
 
 import Search from "./Components/Search";
 import Mainsearch from "./Components/MainSearch";
+import Profileedit from "./Components/Profileedit";
+import Profilesection from "./Components/Profilesection";
+import ManagePro from "./Components/ManagePro";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Profilesection />,
+  },
+  {
+    path: "/home",
     element: <Home />,
   },
+
   {
     path: "/login",
     element: <Login />,
@@ -41,6 +49,18 @@ const router = createBrowserRouter([
   {
     path: "/mainsearch/:_id",
     element: <Mainsearch />,
+  },
+  {
+    path: "/padd",
+    element: <Profileedit />,
+  },
+  {
+    path: "/profile",
+    element: <Profilesection />,
+  },
+  {
+    path: "/manageprof/:_id",
+    element: <ManagePro />,
   },
 ]);
 function App() {

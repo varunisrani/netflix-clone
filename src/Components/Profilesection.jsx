@@ -58,11 +58,13 @@ const Profilesection = () => {
               key={data.id}
               className="flex flex-col items-center justify-center mt-5"
             >
-              <img
-                src={data.image}
-                alt={`Profile - ${data.pname}`}
-                className="w-40 h-40 object-cover rounded-lg"
-              />
+              <Link to={`/home/${data.id}`}>
+                <img
+                  src={data.image}
+                  alt={`Profile - ${data.pname}`}
+                  className="w-40 h-40 object-cover rounded-lg"
+                />
+              </Link>
               <h1 className="font-medium mt-2 text-white/50">{data.pname}</h1>
               {show && (
                 // Conditional rendering of the "Update" button

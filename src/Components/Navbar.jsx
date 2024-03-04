@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { auth } from "./Auth/Login/firebase";
+
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
 
@@ -15,7 +16,7 @@ const Navbar = () => {
     <div>
       <div className="relative flex items-center justify-between p-4 bg-[#141414] text-white">
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/home">
             <img
               src="https://imagetolink.com/ib/Pl1RjQA1A3.png"
               alt="Pl1RjQA1A3"
@@ -30,7 +31,7 @@ const Navbar = () => {
                 activeLink === "Home" ? "font-bold" : "text-white/50"
               } `}
             >
-              <Link to="/" onClick={() => handleLinkClick("Home")}>
+              <Link to="/home" onClick={() => handleLinkClick("Home")}>
                 Home
               </Link>
             </li>

@@ -66,9 +66,9 @@ const Profilesection = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-center items-center bg-[#141414]">
       {user ? (
         <>
+<div className="flex flex-col h-screen justify-center items-center bg-[#141414]">
           <h1 className="text-4xl mb-4 font-medium text-white">
             Who's watching?
           </h1>
@@ -123,6 +123,7 @@ const Profilesection = () => {
           >
             Manage Profile
           </button>
+</div>
         </>
       ) : (
         <div className="flex flex-col justify-center items-center font-bold text-5xl inset-0 absolute">
@@ -132,7 +133,6 @@ const Profilesection = () => {
           </button>
         </div>
       )}
-    </div>
   );
 };
 

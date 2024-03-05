@@ -70,6 +70,7 @@ const Profilesection = () => {
 
   return (
     <>
+    <div>
       {user ? (
         <>
           <div className="flex flex-col h-screen justify-center items-center bg-[#141414] phone:flex phone:flex-wrap phone:p-4 ">
@@ -138,6 +139,7 @@ const Profilesection = () => {
         </div>
       )}
     </>
+    </div>
   );
 };
 

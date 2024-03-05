@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // Import Helmet components
 import Login from "./Components/Auth/Login/Login";
 import Home from "./Components/Home";
 import Tvlist from "./Components/Tvlist";
@@ -11,8 +11,12 @@ import Profileedit from "./Components/Profileedit";
 import Profilesection from "./Components/Profilesection";
 import ManagePro from "./Components/ManagePro";
 import { UserProfileProvider } from "./Components/UserProfileProvider";
+import Success from "./Components/Success";
+import Cancel from "./Components/Cancel";
+import Checkout from "./Components/Checkout";
 
 const router = createBrowserRouter([
+  // ... your route configurations
   {
     path: "/",
     element: <Profilesection />,
@@ -61,12 +65,23 @@ const router = createBrowserRouter([
     path: "/manageprof/:_id",
     element: <ManagePro />,
   },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "/cancel",
+    element: <Cancel />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
+  },
 ]);
 
 function App() {
   return (
     <UserProfileProvider>
-      {/* Wrap your entire application with UserProfileProvider */}
       <RouterProvider router={router} />
     </UserProfileProvider>
   );

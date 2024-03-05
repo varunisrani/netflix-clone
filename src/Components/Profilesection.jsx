@@ -7,8 +7,9 @@ import { useUserProfile } from "./UserProfileProvider";
 
 const Profilesection = () => {
   const [datas, setDatas] = useState([]);
-  const [show, setShow] = useState(false);
+  const [profileid, setSelectedProfileId] = useState(null); // Track the selected profile ID
   const [currentUserUid, setCurrentUserUid] = useState(null);
+  const [show, setShow] = useState(false);
   const fadeAnimation = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -56,6 +57,18 @@ const Profilesection = () => {
   const handleProfileClick = (profileId) => {
     setSelectedProfile(profileId);
   };
+  const handleUpdateClick = (profileId) => {
+    setShow(true);
+    setSelectedProfileId(profileId);
+    // Show the update button only if the current user's UID does not match the UID associated with the profile
+    const isCurrentUserProfile =
+      currentUserUid === datas.find((data) => data.id === profileId)?.uid;
+
+    if (!isCurrentUserProfile) {
+      setShow(true);
+      setSelectedProfileId(profileId);
+    }
+  };
 
   return (
     <div className="flex flex-col h-screen justify-center items-center bg-[#141414]">
@@ -87,7 +100,16 @@ const Profilesection = () => {
                     <h1 className="font-medium mt-2 text-white/50">
                       {data.pname}
                     </h1>
-                    {show && <div className="text-red-600">Update</div>}
+                    {show && (
+                      <Link to={`/manageprof/${data.id}`}>
+                        <button
+                          className="text-red-600"
+                          onClick={() => handleUpdateClick(data.id)}
+                        >
+                          Update
+                        </button>
+                      </Link>
+                    )}
                   </div>
                 )
             )}

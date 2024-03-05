@@ -78,12 +78,10 @@ const Navbar = () => {
                 Tv shows
               </Link>
             </li>
-            <li
-              className={`text-white/50 ${
-                activeLink === "MyList" ? "font-bold" : "hover:text-white"
-              } `}
-            >
-              My list
+            <li className={`text-white/50 hover:text-white `}>
+              <Link to="/checkout" onClick={() => handleLinkClick("TV")}>
+                Buy subscription
+              </Link>
             </li>
           </ul>
         </div>

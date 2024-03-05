@@ -87,7 +87,7 @@ const Profilesection = () => {
                       >
                         <div onClick={() => handleProfileClick(data.id)}>
                           <Link to="/home">
-                            <img
+                           <img
                               src={data.image}
                               alt={`Profile - ${data.pname}`}
                               className="w-40 h-40 object-cover rounded-lg"

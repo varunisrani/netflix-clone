@@ -71,6 +71,7 @@ const [user] = useAuthState(auth)
   };
 
   return (
+{user (
     <div className="flex flex-col h-screen justify-center items-center bg-[#141414]">
       <h1 className="text-4xl mb-4 font-medium text-white">Whos watching?</h1>
       <div className="flex flex-row justify-center items-center gap-8">
@@ -122,7 +123,12 @@ const [user] = useAuthState(auth)
       <button className="bg-white p-4 mt-20" onClick={() => setShow(!show)}>
         Manage Profile
       </button>
-    </div>
+    </div>):(<div className="flex flex-col justify-center items-center font-bold text-5xl inset-0 absolute">
+          Please Login to Access this Page
+          <button className="text-xl bg-[#E50914] text-white w-20 p-4 flex justify-center items-center rounded-full">
+            <Link to="/">Home</Link>
+          </button>
+        </div>);
   );
 };
 

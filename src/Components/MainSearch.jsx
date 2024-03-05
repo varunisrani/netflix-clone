@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Navbar from "./Navbar";
+
 import movieTrailer from "movie-trailer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/Login/firebase";

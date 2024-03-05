@@ -54,10 +54,13 @@ const Profilesection = () => {
     };
   }, []);
 
-  const { setSelectedProfile } = useUserProfile();
+  const userProfile = useUserProfile();
+  const { setSelectedProfile } = userProfile || {};
 
   const handleProfileClick = (profileId) => {
-    setSelectedProfile(profileId);
+    if (setSelectedProfile) {
+      setSelectedProfile(profileId);
+    }
   };
 
   const handleUpdateClick = (profileId) => {

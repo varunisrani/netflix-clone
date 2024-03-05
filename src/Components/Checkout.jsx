@@ -13,7 +13,7 @@ const Checkout = () => {
       mode: "subscription",
       successUrl: `http://localhost:5173/success`,
       cancelUrl: `http://localhost:5173/cancel`,
-      customerEmail: "solovpxofficial@email.com",
+      customerEmail: "xyz@gmail.com",
     });
     console.warn(error.message);
   }

@@ -1,7 +1,7 @@
 const Part4 = () => {
   return (
     <div className="bg-black grid">
-      <div className="flex flex-col justify-center items-center mt-10">
+      <div className="flex flex-col phone:ml-8 phone:mt-10 phone:mr-5 mt-10">
         <span className="text-white font-bold text-4xl">
           Create profiles for kids
         </span>

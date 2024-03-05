@@ -57,24 +57,23 @@ const Mainsearch = () => {
   return (
     <>
       {user ? (
-        <div className="bg-[#141414] h-screen">
-          <Navbar />
+        <div className="bg-[#141414] h-screen phone:h-screen">
           <Link to="/">
             <button className="border-4 border-[#E50914] text-white font-medium w-20 p-2 ml-10 mt-10 rounded-lg hover:bg-[#E50914]">
               Back
             </button>
           </Link>
-          <div className="flex flex-row absolute ml-10 mt-10">
+          <div className="flex flex-row absolute ml-10 phone:ml-5 mt-10 phone:flex phone:flex-col phone:h-full">
             <div>
               <img
                 src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                 alt={data.title}
-                className="h-1/1 w-full"
+                className="h-1/1 w-full phone:h-40 phone:w-40 object-cover phone:ml-5"
               />
             </div>
-            <div className="flex flex-col ml-10">
+            <div className="flex flex-col ml-10 phone:ml-5">
               <div className="flex items-center mb-5"></div>
-              <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-bold mt-5">
+              <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-bold mt-5 phone:text-4xl">
                 {data.title}
               </h1>
               <p className="text-white text-base md:text-lg lg:text-xl mt-10 mr-10">

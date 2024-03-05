@@ -35,7 +35,7 @@ const Search = () => {
           <Navbar />
           <div className="bg-[#141414] min-h-screen">
             <div className="flex items-center justify-center flex-col">
-              <h1 className="text-5xl font-bold mt-10 text-white">
+              <h1 className="text-5xl font-bold mt-10 text-white phone:text-3xl phone:p-4">
                 Search Movies & TV Shows
               </h1>
               <div>
@@ -48,12 +48,12 @@ const Search = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto p-4 mt-5 ml-5 md:flex-wrap lg:justify-start">
-              <div className="flex flex-wrap space-x-4">
+            <div className="flex flex-row flex-wrap overflow-x-auto p-4 mt-5 ml-5 md:flex-wrap lg:justify-start phone:flex phone:flex-wrap phone:mr-5">
+              <div className="flex flex-wrap space-x-4 phone:flex phone:flex-wrap phone:mr-5">
                 {data.map((datas) => (
                   <div
                     key={datas.id}
-                    className="flex-shrink-0 w-1/4 md:w-1/5 lg:w-1/6 last:mr-0 last:mb-0 mt-5 ml-5"
+                    className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 last:mr-0 last:mb-0 mt-5 ml-5 phone:mr-5"
                   >
                     <Link
                       to={`/mainsearch/${datas.id}`}

@@ -36,10 +36,10 @@ const Main = () => {
             />
           </div>
           <div className="absolute top-0 right-0 mt-5 mr-5"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-5">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-5 phone:hidden">
             <div
               id="centered-text"
-              className="flex flex-row gap-2 items-center text-white text-4xl font-bold mb-3"
+              className="flex flex-row gap-2 items-center text-white text-4xl font-bold mb-3 phone:hidden"
             >
               <span>Unlimited</span>
               <span>movies,</span>
@@ -49,10 +49,10 @@ const Main = () => {
               <span>more</span>
             </div>
           </div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mt-10">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mt-10 ">
             <div
               id="centered-text"
-              className="flex flex-row gap-2 items-center text-xl text-white"
+              className="flex flex-row gap-2 items-center text-xl text-white phone:hidden"
             >
               <span>Watch</span>
               <span>anywhere.</span>
@@ -63,7 +63,7 @@ const Main = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mt-20">
             <div
               id="centered-text"
-              className="flex flex-row gap-1 items-center text-xl text-white font-medium mt-20"
+              className="flex flex-row gap-1 items-center text-xl text-white font-medium mt-20 phone:hidden"
             >
               <span>Ready</span>
               <span>to</span>
@@ -78,9 +78,9 @@ const Main = () => {
               <span>your</span>
               <span>membership.</span>
             </div>
-            <div className="flex flex- mt-5 justify-center items-center">
+            <div className="flex flex- mt-5 justify-center items-center ">
               <button
-                className="p-4  w-100 bg-[#E50914] text-white font-bold text-2xl"
+                className="p-4  w-100 bg-[#E50914] text-white font-bold text-2xl phone:p-3"
                 onClick={google}
               >
                 Get Started

@@ -1,17 +1,50 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "./Auth/Login/firebase";
-
+import { useUserProfile } from "./UserProfileProvider";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./Auth/Login/firebase";
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
-
+  const { selectedProfileId } = useUserProfile();
+  const [image, setImage] = useState([]);
+  const [datas, setDatas] = useState([]);
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
-
+  console.log("Navbar id", selectedProfileId);
   const logout = async () => {
     auth.signOut();
   };
+  const showData = async () => {
+    try {
+      const dataRef = doc(db, "profile", selectedProfileId);
+      const docSnapshot = await getDoc(dataRef);
+      {
+        datas;
+      }
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        setDatas([
+          {
+            id: docSnapshot.id,
+            pname: data.pname,
+            pass: data.pass,
+            image: data.image,
+          },
+        ]);
+        // Set the state for editing
+        setImage(data.image);
+      } else {
+        alert("Profile not found");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    showData();
+  }, [selectedProfileId]);
   return (
     <div>
       <div className="relative flex items-center justify-between p-4 bg-[#141414] text-white">
@@ -73,9 +106,15 @@ const Navbar = () => {
               </svg>
             </button>
           </Link>
-          <button className="text-white">
-            <Link to="/profile">Profile</Link>
-          </button>
+          <Link to="/profile">
+            <img
+              src={image}
+              alt="Profile"
+              height={100}
+              width={50}
+              className=" object-cover rounded-lg"
+            />
+          </Link>
           <button onClick={logout}>
             <Link to="/login">Log out</Link>
           </button>

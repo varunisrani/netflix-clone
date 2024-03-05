@@ -4,12 +4,14 @@ import { auth } from "./Auth/Login/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import Navbar from "./Navbar";
+import { useUserProfile } from "./UserProfileProvider";
 
-const ProfileProvider = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
   const [randomMovie, setRandomMovie] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
+  const { selectedProfileId } = useUserProfile();
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`)
@@ -40,7 +42,7 @@ const ProfileProvider = () => {
   }, [apiKey]);
 
   const [user] = useAuthState(auth);
-
+  console.log("Selected Profile ID in Home:", selectedProfileId);
   return (
     <>
       {!user ? (
@@ -141,4 +143,4 @@ const ProfileProvider = () => {
   );
 };
 
-export default ProfileProvider;
+export default Home;

@@ -5,12 +5,12 @@ import Tvlist from "./Components/Tvlist";
 import Movie from "./Components/Movie";
 import Mainmovie from "./Components/Mainmovie";
 import Maintv from "./Components/Maintv";
-
 import Search from "./Components/Search";
 import Mainsearch from "./Components/MainSearch";
 import Profileedit from "./Components/Profileedit";
 import Profilesection from "./Components/Profilesection";
 import ManagePro from "./Components/ManagePro";
+import { UserProfileProvider } from "./Components/UserProfileProvider";
 
 const router = createBrowserRouter([
   {
@@ -18,14 +18,9 @@ const router = createBrowserRouter([
     element: <Profilesection />,
   },
   {
-    path: "/home/:_id",
-    element: <Home />,
-  },
-  {
     path: "/Home",
     element: <Home />,
   },
-
   {
     path: "/login",
     element: <Login />,
@@ -67,11 +62,13 @@ const router = createBrowserRouter([
     element: <ManagePro />,
   },
 ]);
+
 function App() {
   return (
-    <>
+    <UserProfileProvider>
+      {/* Wrap your entire application with UserProfileProvider */}
       <RouterProvider router={router} />
-    </>
+    </UserProfileProvider>
   );
 }
 

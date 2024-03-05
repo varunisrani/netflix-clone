@@ -9,7 +9,7 @@ const ManagePro = () => {
   const [pass, setPass] = useState("");
   const [image, setImage] = useState("");
   const [datas, setDatas] = useState([]);
-
+  console.log(datas);
   const updateData = async () => {
     try {
       const profileRef = doc(db, "profile", _id);

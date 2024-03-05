@@ -7,7 +7,11 @@ const Part3 = () => {
           Stream unlimited movies and TV shows on your phone, tablet, laptop,
           and TV.
         </span>
-        <img src="https://imagetolink.com/ib/X0jv2OSDfv.png" alt="X0jv2OSDfv" />
+        <img
+          src="https://imagetolink.com/ib/X0jv2OSDfv.png"
+          alt="X0jv2OSDfv"
+          className="phone:mr-5 phone:mt-5"
+        />
       </div>
     </div>
   );

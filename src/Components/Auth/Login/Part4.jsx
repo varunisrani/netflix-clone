@@ -9,7 +9,11 @@ const Part4 = () => {
           Send children on adventures with their favourite characters in a space
           made just for them—free with your membership.
         </span>
-        <img src="https://imagetolink.com/ib/4CQAEyMq3G.png" alt="4CQAEyMq3G" />
+        <img
+          src="https://imagetolink.com/ib/4CQAEyMq3G.png"
+          alt="4CQAEyMq3G"
+          className="phone:mr-5 phone:mt-5"
+        />
       </div>
     </div>
   );

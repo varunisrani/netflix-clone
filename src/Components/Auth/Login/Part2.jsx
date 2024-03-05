@@ -8,7 +8,11 @@ const Part2 = () => {
         <span className="text-white font-semibold mt-3">
           Save your favourites easily and always have something to watch.
         </span>
-        <img src="https://imagetolink.com/ib/w9BYK3fhh4.png" alt="w9BYK3fhh4" />
+        <img
+          src="https://imagetolink.com/ib/w9BYK3fhh4.png"
+          alt="w9BYK3fhh4"
+          className="phone:mr-5 mt-5"
+        />
       </div>
     </div>
   );

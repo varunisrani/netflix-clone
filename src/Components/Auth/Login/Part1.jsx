@@ -7,7 +7,11 @@ const Part1 = () => {
           Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray
           players and more.
         </span>
-        <img src="https://imagetolink.com/ib/b7cykmXuHm.png" alt="b7cykmXuHm" />
+        <img
+          src="https://imagetolink.com/ib/b7cykmXuHm.png"
+          alt="b7cykmXuHm"
+          className="phone:mr-5 mt-5"
+        />
       </div>
     </div>
   );

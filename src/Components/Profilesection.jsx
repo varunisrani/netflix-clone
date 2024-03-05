@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db, auth } from "./Auth/Login/firebase";
 import { useSpring, animated } from "react-spring";
 import { useUserProfile } from "./UserProfileProvider";
-
+import { useAuthState } from "react-firebase-hooks/auth";
 const Profilesection = () => {
   const [datas, setDatas] = useState([]);
   const [profileid, setSelectedProfileId] = useState(null); // Track the selected profile ID
@@ -15,7 +15,7 @@ const Profilesection = () => {
     to: { opacity: 1 },
     config: { duration: 500 },
   });
-
+const [user] = useAuthState(auth)
   const showData = async () => {
     try {
       const dataRef = collection(db, "profile");

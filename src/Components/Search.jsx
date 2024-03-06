@@ -35,7 +35,7 @@ const Search = () => {
           <Navbar />
           <div className="bg-[#141414] min-h-screen">
             <div className="flex items-center justify-center flex-col">
-              <h1 className="text-5xl font-bold mt-10 text-white phone:text-3xl phone:p-4">
+              <h1 className="text-5xl font-bold mt-10 text-white phone:text-3xl phone:p-4 mid:text-4xl mid:mt-10 mid:m-4">
                 Search Movies & TV Shows
               </h1>
               <div>

@@ -56,18 +56,19 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="relative flex items-center justify-between p-4 bg-[#141414] text-white phone:flex phone:flex-row">
+      <nav className="relative flex items-center justify-between p-4 bg-[#141414] text-white phone:flex phone:flex-row mid:flex mid:flex-row">
         <div className="flex items-center">
           <Link to="/home">
+            {" "}
             <img
               src="https://imagetolink.com/ib/Pl1RjQA1A3.png"
               alt="Pl1RjQA1A3"
               height={100}
               width={100}
-              className="z-10 phone:h-5 phone:w-20"
-            />
+              className="z-10 phone:h-5 phone:w-20 mid:h-5 mid:w-20"
+            />{" "}
           </Link>
-          <ul className="flex flex-row gap-5 ml-10 phone:hidden ">
+          <ul className="flex flex-row gap-5 ml-10 phone:hidden mid:hidden ">
             <li
               className={`text-white ${
                 activeLink === "Home" ? "font-bold" : "text-white/50"
@@ -125,13 +126,10 @@ const Navbar = () => {
               className=" object-cover rounded-lg"
             />
           </Link>
-          <button onClick={logout} className="phone:hidden">
+          <button onClick={logout} className="phone:hidden mid:hidden">
             <Link to="/login">Log out</Link>
           </button>
-          <button
-            className="mid:hidden md:hidden lg:hidden"
-            onClick={toggleMenu}
-          >
+          <button className=" md:hidden lg:hidden" onClick={toggleMenu}>
             {" "}
             {isOpen ? "Close" : "Menu"}
           </button>
@@ -141,7 +139,7 @@ const Navbar = () => {
       <div>
         {" "}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-[#141414] border-t border-gray-700 text-white phone:mt-60">
+          <div className="md:hidden absolute top-16 left-0 w-full bg-[#141414] border-t border-gray-700 text-white phone:mt-60 mid:mt-80">
             <ul className="text-center py-5">
               <li>
                 <Link
@@ -186,6 +184,14 @@ const Navbar = () => {
                   onClick={logout}
                 >
                   Logout
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/checkout"
+                  className="block py-3 mb-5 hover:text-gray-400"
+                >
+                  Buy subscription
                 </Link>
               </li>
             </ul>

@@ -73,7 +73,7 @@ const Profilesection = () => {
       <div>
         {user ? (
           <>
-            <div className="flex flex-col h-screen justify-center items-center bg-[#141414] phone:flex phone:flex-wrap phone:p-4 ">
+            <div className="flex flex-col h-screen justify-center items-center bg-[#141414] phone:flex phone:flex-wrap phone:p-4 mid:flex mid:flex-wrap mid:p-4">
               <h1 className="text-4xl mb-4 font-medium text-white phone:text-3xl phone:font-medium">
                 Whos watching?
               </h1>

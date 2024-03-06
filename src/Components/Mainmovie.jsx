@@ -36,7 +36,7 @@ const Mainmovie = () => {
   };
 
   return (
-    <div className="bg-[#141414] h-screen phone:h-screen">
+    <div className="bg-[#141414] h-screen phone:h-screen mid:h-screen mid:mr-5 mid:w-full">
       {user ? (
         <>
           <Link to="/search">
@@ -44,7 +44,7 @@ const Mainmovie = () => {
               Back
             </button>
           </Link>
-          <div className="flex flex-row absolute ml-5 mt-10 phone:flex phone:flex-col phone:h-full">
+          <div className="flex flex-row absolute ml-5 mt-10 phone:flex phone:flex-col phone:h-full ">
             <div className="phone:">
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

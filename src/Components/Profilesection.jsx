@@ -106,7 +106,7 @@ const Profilesection = () => {
                             {show && (
                               <Link to={`/manageprof/${data.id}`}>
                                 <button
-                                  className="text-red-600"
+                                  className="text-red-700"
                                   onClick={() => handleUpdateClick(data.id)}
                                 >
                                   Update

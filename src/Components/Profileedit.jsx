@@ -43,7 +43,7 @@ const Profileedit = () => {
         className="p-4 w-100 border-4 border-black"
       />
       <input
-        type="password"
+        type="text"
         placeholder="Image link"
         value={image}
         onChange={(e) => setImage(e.target.value)}

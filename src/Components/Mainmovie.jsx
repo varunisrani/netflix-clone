@@ -7,6 +7,7 @@ import { auth } from "./Auth/Login/firebase";
 
 const Mainmovie = () => {
   const [movie, setMovie] = useState({});
+  const [trailer, setTrailer] = useState("");
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
   const { mid } = useParams();
   const [user] = useAuthState(auth);
@@ -16,24 +17,15 @@ const Mainmovie = () => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
+        return movieTrailer(data.title || "", { id: true });
+      })
+      .then((trailerId) => {
+        setTrailer(trailerId || "");
       })
       .catch((err) => {
         console.error(err);
       });
   }, [mid]);
-
-  const playVideo = async () => {
-    try {
-      const trailer = await movieTrailer(movie.title || "", {
-        id: true,
-      });
-
-      const videoId = trailer || "";
-      window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
-    } catch (error) {
-      console.error("Error fetching trailer:", error);
-    }
-  };
 
   return (
     <div className="bg-[#141414] h-screen phone:h-screen mid:h-screen mid:mr-5 mid:w-full">
@@ -74,12 +66,11 @@ const Mainmovie = () => {
                 <strong className="text-[#E50914]">Runtime:</strong>{" "}
                 {movie.runtime ? `${movie.runtime} mins` : "N/A"}
               </p>
-              <button
-                className="w-60 p-5 border-4 border-[#E50914] mt-20 rounded-full text-white hover:bg-[#E50914]"
-                onClick={playVideo}
-              >
-                Play
-              </button>
+              <Link to={`/video/${trailer}`}>
+                <button className="w-60 p-5 border-4 border-[#E50914] mt-20 rounded-full text-white hover:bg-[#E50914]">
+                  Play
+                </button>
+              </Link>
             </div>
           </div>
         </>

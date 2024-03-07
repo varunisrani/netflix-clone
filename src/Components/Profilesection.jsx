@@ -123,7 +123,7 @@ const Profilesection = () => {
                 </button>
               </div>
               <button
-                className="bg-white p-4 mt-20"
+                className="bg-[#E50914] p-4 mt-20 text-white font-medium"
                 onClick={() => setShow(!show)}
               >
                 Manage Profile

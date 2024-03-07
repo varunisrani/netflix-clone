@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/Login/firebase";
 
-const Videom = () => {
+const Videom1 = () => {
   const { _id } = useParams();
   const [user] = useAuthState(auth);
   const [, setMovie] = useState({});
@@ -13,7 +13,7 @@ const Videom = () => {
     const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
 
     // Fetch movie details
-    fetch(`https://api.themoviedb.org/3/movie/${_id}?api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/tv/${_id}?api_key=${apiKey}`)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
@@ -65,4 +65,4 @@ const Videom = () => {
   );
 };
 
-export default Videom;
+export default Videom1;

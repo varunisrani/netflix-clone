@@ -14,6 +14,7 @@ import { UserProfileProvider } from "./Components/UserProfileProvider";
 import Success from "./Components/Success";
 import Cancel from "./Components/Cancel";
 import Checkout from "./Components/Checkout";
+import Videom from "./Components/Videom";
 
 const router = createBrowserRouter([
   // ... your route configurations
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+  {
+    path: "/video/:_id",
+    element: <Videom />,
   },
 ]);
 

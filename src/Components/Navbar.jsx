@@ -4,13 +4,13 @@ import { auth } from "./Auth/Login/firebase";
 import { useUserProfile } from "./UserProfileProvider";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./Auth/Login/firebase";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const { selectedProfileId } = useUserProfile();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [imageLoading, setImageLoading] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,7 +18,6 @@ const Navbar = () => {
 
   const [datas, setDatas] = useState([]);
   console.log(datas);
-
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
@@ -34,19 +33,6 @@ const Navbar = () => {
 
       if (docSnapshot.exists()) {
         const data = docSnapshot.data();
-
-        // Check if the image is already stored in local storage
-        const storedImage = localStorage.getItem("profileImage");
-
-        if (storedImage) {
-          // If stored, use the locally stored image
-          setImage(storedImage);
-        } else {
-          // If not stored, set the image and store it in local storage
-          setImage(data.image);
-          localStorage.setItem("profileImage", data.image);
-        }
-
         setDatas([
           {
             id: docSnapshot.id,
@@ -55,15 +41,13 @@ const Navbar = () => {
             image: data.image,
           },
         ]);
+        // Set the state for editing
+        setImage(data.image);
       } else {
         alert("Profile not found");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-    } finally {
-      // Set loading to false once data is fetched (whether successful or not)
-
-      setImageLoading(false);
     }
   };
 
@@ -134,24 +118,19 @@ const Navbar = () => {
               </svg>
             </button>
           </Link>
-          {imageLoading ? (
-            <p>L</p>
-          ) : (
-            <Link to="/profile">
-              {image && (
-                <img
-                  src={image}
-                  height={50}
-                  width={50}
-                  className="object-cover rounded-lg"
-                />
-              )}
-            </Link>
-          )}
+          <Link to="/profile">
+            <img
+              src={image}
+              alt="Profile"
+              height={50}
+              width={50}
+              className=" object-cover rounded-lg"
+            />
+          </Link>
           <button onClick={logout} className="phone:hidden mid:hidden">
             <Link to="/login">Log out</Link>
           </button>
-          <button className="md:hidden lg:hidden" onClick={toggleMenu}>
+          <button className=" md:hidden lg:hidden" onClick={toggleMenu}>
             {" "}
             {isOpen ? "Close" : "Menu"}
           </button>
@@ -160,65 +139,7 @@ const Navbar = () => {
 
       <div>
         {" "}
-        {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-[#141414] border-t border-gray-700 text-white phone:mt-60 mid:mt-80">
-            <ul className="text-center py-5">
-              <li>
-                <Link
-                  to="/home"
-                  className="block py-3 hover:text-gray-400 mt-5"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/tv"
-                  className="block py-3 hover:text-gray-400"
-                  onClick={() => setIsOpen(false)}
-                >
-                  TV
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/movie"
-                  className="block py-3 hover:text-gray-400"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Movie
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/search"
-                  className="block py-3 hover:text-gray-400"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Search
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/login"
-                  className="block py-3 hover:text-gray-400"
-                  onClick={logout}
-                >
-                  Logout
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/checkout"
-                  className="block py-3 mb-5 hover:text-gray-400"
-                >
-                  Buy subscription
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
+        {isOpen && <MobileNavbar setIsOpen={setIsOpen} logout={logout} />}
       </div>
     </>
   );

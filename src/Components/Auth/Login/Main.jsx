@@ -22,7 +22,7 @@ const Main = () => {
       {!user ? (
         <>
           <img
-            src="https://imagetolink.com/ib/aH6IlwGzmN.png"
+            src="https://imagetolink.com/ib/DiteYFxzIj.png"
             alt="aH6IlwGzmN"
             className="w-full"
           />

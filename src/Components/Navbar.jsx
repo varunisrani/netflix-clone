@@ -8,8 +8,9 @@ import { db } from "./Auth/Login/firebase";
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const { selectedProfileId } = useUserProfile();
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,6 +18,7 @@ const Navbar = () => {
 
   const [datas, setDatas] = useState([]);
   console.log(datas);
+
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
@@ -32,6 +34,19 @@ const Navbar = () => {
 
       if (docSnapshot.exists()) {
         const data = docSnapshot.data();
+
+        // Check if the image is already stored in local storage
+        const storedImage = localStorage.getItem("profileImage");
+
+        if (storedImage) {
+          // If stored, use the locally stored image
+          setImage(storedImage);
+        } else {
+          // If not stored, set the image and store it in local storage
+          setImage(data.image);
+          localStorage.setItem("profileImage", data.image);
+        }
+
         setDatas([
           {
             id: docSnapshot.id,
@@ -40,13 +55,15 @@ const Navbar = () => {
             image: data.image,
           },
         ]);
-        // Set the state for editing
-        setImage(data.image);
       } else {
         alert("Profile not found");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      // Set loading to false once data is fetched (whether successful or not)
+
+      setImageLoading(false);
     }
   };
 
@@ -117,19 +134,24 @@ const Navbar = () => {
               </svg>
             </button>
           </Link>
-          <Link to="/profile">
-            <img
-              src={image}
-              alt="Profile"
-              height={100}
-              width={50}
-              className=" object-cover rounded-lg"
-            />
-          </Link>
+          {imageLoading ? (
+            <p>L</p>
+          ) : (
+            <Link to="/profile">
+              {image && (
+                <img
+                  src={image}
+                  height={50}
+                  width={50}
+                  className="object-cover rounded-lg"
+                />
+              )}
+            </Link>
+          )}
           <button onClick={logout} className="phone:hidden mid:hidden">
             <Link to="/login">Log out</Link>
           </button>
-          <button className=" md:hidden lg:hidden" onClick={toggleMenu}>
+          <button className="md:hidden lg:hidden" onClick={toggleMenu}>
             {" "}
             {isOpen ? "Close" : "Menu"}
           </button>

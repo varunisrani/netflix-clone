@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "./Auth/Login/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,44 +6,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Navbar from "./Navbar";
 import { useUserProfile } from "./UserProfileProvider";
 import ClipLoader from "react-spinners/ClipLoader";
+import useMovieData from "../customhooks/useMovieData";
+import useTvData from "../customhooks/useTvData";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
   const [user, loading] = useAuthState(auth);
   const [submitting] = useState(false);
-  const [tv, setTv] = useState([]);
-  const [randomMovie, setRandomMovie] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
   const { selectedProfileId } = useUserProfile();
-
-  useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.results) {
-          setMovies(data.results);
-          const randomIndex = Math.floor(Math.random() * data.results.length);
-          setRandomMovie(data.results[randomIndex]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    fetch(
-      "https://api.themoviedb.org/3/discover/tv?api_key=b1666d3d17f247efa7f49e045debdf4a"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.results) {
-          setTv(data.results);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [apiKey]);
-
+  const { movies, randomMovie } = useMovieData(apiKey);
+  const { tv } = useTvData(apiKey);
   console.log("Selected Profile ID in Home:", selectedProfileId);
   if (loading) {
     return (

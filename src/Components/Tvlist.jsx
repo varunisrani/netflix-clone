@@ -1,30 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/Login/firebase";
 import ClipLoader from "react-spinners/ClipLoader";
+import useTvData from "../customhooks/useTvData";
 const Tvlist = () => {
-  const [tv, setTv] = useState([]);
-  const [randomTv, setRandomTv] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a"; // Replace with your actual API key
   const [user, loading] = useAuthState(auth);
   const [submitting] = useState(false);
-  useEffect(() => {
-    // Fetch TV shows
-    fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.results) {
-          setTv(data.results);
-          const randomIndex = Math.floor(Math.random() * data.results.length);
-          setRandomTv(data.results[randomIndex]);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [apiKey]);
+  const { tv, randomTv } = useTvData(apiKey);
+
   if (loading) {
     return (
       <>

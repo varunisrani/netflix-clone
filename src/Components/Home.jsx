@@ -5,9 +5,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import Navbar from "./Navbar";
 import { useUserProfile } from "./UserProfileProvider";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [user, loading] = useAuthState(auth);
+  const [submitting] = useState(false);
   const [tv, setTv] = useState([]);
   const [randomMovie, setRandomMovie] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
@@ -41,9 +44,23 @@ const Home = () => {
       });
   }, [apiKey]);
 
-  const [user] = useAuthState(auth);
   console.log("Selected Profile ID in Home:", selectedProfileId);
-
+  if (loading) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen bg-[#141414]">
+          <ClipLoader
+            color="red"
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <>
       {!user ? (

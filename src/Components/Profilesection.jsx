@@ -5,9 +5,11 @@ import { db, auth } from "./Auth/Login/firebase";
 import { useSpring, animated } from "react-spring";
 import { useUserProfile } from "./UserProfileProvider";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Profilesection = () => {
   const [datas, setDatas] = useState([]);
+  const [user, loading] = useAuthState(auth);
+  const [submitting] = useState(false);
   const [profileid, setSelectedProfileId] = useState(null);
   const [currentUserUid, setCurrentUserUid] = useState(null);
   const [show, setShow] = useState(false);
@@ -16,7 +18,6 @@ const Profilesection = () => {
     to: { opacity: 1 },
     config: { duration: 500 },
   });
-  const [user] = useAuthState(auth);
   console.log(profileid);
   const showData = async () => {
     try {
@@ -67,6 +68,22 @@ const Profilesection = () => {
     setShow(true);
     setSelectedProfileId(profileId);
   };
+  if (loading) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen bg-[#141414]">
+          <ClipLoader
+            color="red"
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

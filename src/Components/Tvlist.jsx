@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/Login/firebase";
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Tvlist = () => {
   const [tv, setTv] = useState([]);
   const [randomTv, setRandomTv] = useState(null);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a"; // Replace with your actual API key
-  const [user] = useAuthState(auth);
-
+  const [user, loading] = useAuthState(auth);
+  const [submitting] = useState(false);
   useEffect(() => {
     // Fetch TV shows
     fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}`)
@@ -25,7 +25,22 @@ const Tvlist = () => {
         console.error(err);
       });
   }, [apiKey]);
-
+  if (loading) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen bg-[#141414]">
+          <ClipLoader
+            color="red"
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <>
       {!user ? (

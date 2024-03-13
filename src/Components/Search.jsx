@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Auth/Login/firebase";
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Search = () => {
   const [data, setData] = useState([]);
   const apiKey = "b1666d3d17f247efa7f49e045debdf4a";
   const [search, setSearch] = useState("");
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const [submitting] = useState(false);
 
   useEffect(() => {
     // Fetch movies and TV shows based on the search query
@@ -26,7 +27,22 @@ const Search = () => {
       .then((data) => setData(data.results))
       .catch((err) => console.log(err));
   }, [search]);
-
+  if (loading) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen bg-[#141414]">
+          <ClipLoader
+            color="red"
+            loading={loading || submitting}
+            size={120}
+            aria-label="Loading Spinner"
+            className="ml-10"
+            data-testid="loader"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <>
       {user ? (

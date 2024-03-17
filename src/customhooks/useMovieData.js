@@ -1,32 +1,34 @@
-import { useEffect, useState } from "react";
+// useMovieData.js
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies, setRandomMovie } from "../Components/redux/actions";
 
 const useMovieData = (apiKey) => {
-  const [movies, setMovies] = useState([]);
-  const [randomMovie, setRandomMovie] = useState(null); // Renamed loading to get
-  const [, setError] = useState(null);
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => state.movies);
+  const randomMovie = useSelector((state) => state.randomMovie);
 
   useEffect(() => {
-    const fetchData = () => {
-      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.results) {
-            setMovies(data.results);
-            // Select a random movie from the list
-            const randomIndex = Math.floor(Math.random() * data.results.length);
-            setRandomMovie(data.results[randomIndex]);
-          }
-        })
-        .catch((err) => {
-          setError(err);
-          console.log(err);
-        });
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
+        );
+        const data = await response.json();
+        if (data.results) {
+          dispatch(setMovies(data.results));
+          const randomIndex = Math.floor(Math.random() * data.results.length);
+          dispatch(setRandomMovie(data.results[randomIndex]));
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData();
-  }, [apiKey]);
+  }, [apiKey, dispatch]);
 
-  return { movies, randomMovie }; // Renamed loading to get
+  return { movies, randomMovie };
 };
 
 export default useMovieData;

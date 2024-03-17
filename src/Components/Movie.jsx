@@ -49,7 +49,14 @@ const Movie = () => {
                     alt={randomMovie.title}
                   ></img>
                 ) : (
-                  <p className="text-white">Image not available</p>
+                  <ClipLoader
+                    color="red"
+                    loading={loading || submitting}
+                    size={120}
+                    aria-label="Loading Spinner"
+                    className="ml-10"
+                    data-testid="loader"
+                  />
                 )}
                 <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
                   <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
@@ -88,7 +95,14 @@ const Movie = () => {
                   ))}
                 </div>
               ) : (
-                <p>Loading TV shows...</p>
+                <ClipLoader
+                  color="red"
+                  loading={loading || submitting}
+                  size={120}
+                  aria-label="Loading Spinner"
+                  className="ml-10"
+                  data-testid="loader"
+                />
               )}
             </div>
 
@@ -120,7 +134,14 @@ const Movie = () => {
                   ))}
                 </div>
               ) : (
-                <p>Loading movies...</p>
+                <ClipLoader
+                  color="red"
+                  loading={loading || submitting}
+                  size={120}
+                  aria-label="Loading Spinner"
+                  className="ml-10"
+                  data-testid="loader"
+                />
               )}
             </div>
           </div>

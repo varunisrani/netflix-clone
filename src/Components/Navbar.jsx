@@ -97,6 +97,14 @@ const Navbar = () => {
                 Buy subscription
               </Link>
             </li>
+            <li className={`text-white/50 hover:text-white `}>
+              <Link
+                to="/account"
+                onClick={() => handleLinkClick("Buy Subscription")}
+              >
+                Account
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center gap-4 ">

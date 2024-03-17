@@ -15,9 +15,12 @@ import Success from "./Components/Success";
 import Cancel from "./Components/Cancel";
 import Checkout from "./Components/Checkout";
 import Videom from "./Components/Videom";
-
+import { Provider } from "react-redux";
+import store from "./Components/redux/store";
+import RazorpayComponent from "./Components/RazorpayComponent";
+import Account from "./Components/Account";
+import Changeplan from "./Components/Changeplan";
 const router = createBrowserRouter([
-  // ... your route configurations
   {
     path: "/",
     element: <Profilesection />,
@@ -82,13 +85,27 @@ const router = createBrowserRouter([
     path: "/video/:_id",
     element: <Videom />,
   },
+  {
+    path: "/razor",
+    element: <RazorpayComponent />,
+  },
+  {
+    path: "/account",
+    element: <Account />,
+  },
+  {
+    path: "/change",
+    element: <Changeplan />,
+  },
 ]);
 
 function App() {
   return (
-    <UserProfileProvider>
-      <RouterProvider router={router} />
-    </UserProfileProvider>
+    <Provider store={store}>
+      <UserProfileProvider>
+        <RouterProvider router={router} />
+      </UserProfileProvider>
+    </Provider>
   );
 }
 

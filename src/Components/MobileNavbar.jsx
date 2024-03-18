@@ -42,6 +42,9 @@ const MobileNavbar = ({ setIsOpen, logout }) => {
               Search
             </Link>
           </li>
+          <li className={`text-white/50 hover:text-white `}>
+            <Link to="/account">Account</Link>
+          </li>
           <li>
             <Link
               to="/login"

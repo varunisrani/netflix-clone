@@ -50,6 +50,12 @@ const Navbar = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const handleImageError = (event) => {
+    event.target.src =
+      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+    //event.target.height = 40;
+    // event.target.width = 40;
+  };
 
   useEffect(() => {
     showData();
@@ -127,13 +133,18 @@ const Navbar = () => {
             </button>
           </Link>
           <Link to="/profile">
-            <img
-              src={image}
-              alt="Profile"
-              height={50}
-              width={50}
-              className=" object-cover rounded-lg"
-            />
+            {image ? (
+              <img
+                src={image}
+                alt="Profile"
+                height={40}
+                width={40}
+                className="object-cover"
+                onError={handleImageError}
+              />
+            ) : (
+              <div style={{ height: "40px", width: "40px" }}></div>
+            )}
           </Link>
           <button onClick={logout} className="phone:hidden mid:hidden">
             <Link to="/login">Log out</Link>
